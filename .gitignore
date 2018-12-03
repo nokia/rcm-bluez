@@ -1,0 +1,92 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+
+
+# Build
+
+*.o
+*.lo
+.DS_Store
+*.a
+*.la
+*.Po
+clean
+
+# Editors
+
+*~
+*.swp
+*.so
+.exrc
+
+# Makefile
+
+Makefile
+aclocal.m4
+autom4te.cache/
+compile
+config.guess
+config.log
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4/
+missing
+
+# Binary
+
+.libs
+*.pc
+
+# Packages
+
+packages/
+*.dsc
+*.deb
+*.tar.gz
+*.changes
+
+# Patches
+
+*.diff
+*.patch
+
+# folders
+
+server/bluez-5.43/tools/*
+clent/bluez-5.43/tools/*
