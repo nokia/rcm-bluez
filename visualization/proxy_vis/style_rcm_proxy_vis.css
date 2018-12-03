@@ -1,0 +1,312 @@
+/*-------------------Defaults-------------------*/
+* {
+	background: transparent;
+/*	border-radius : 10px 10px 10px 25px;*/
+/*	border-bottom-left-radius: 25px;*/
+	color: black;
+}
+
+/*-------------------Generals-------------------*/
+
+box *, frame * {
+/*        background-color : rgba(0,0,0,0.7);*/
+	background-color: transparent;
+	border-radius : 30px 10px 30px 10px;
+        color: white;
+	border: none;
+}
+
+/*-------------------Window decoration-------------------*/
+
+decoration {
+/*	box-shadow:none;*/
+	box-shadow: 2px 2px 10px 0px rgba(0, 0, 139,0.75);
+	border: none;
+	background-color: rgba(0, 0, 0, 0.15);
+/*	background-color: rgba(255, 127, 80, 0.3);*/
+/*	border:1px solid #FFF;*/
+	border-radius: 30px 10px 30px 10px;
+	padding: 1px;
+/*	border-bottom-left-radius: 25px;*/
+}
+
+headerbar {
+        font-family: "Sans Serif";
+	font-size: 14px;
+	font-stretch: normal;
+        border: 2px solid rgba(0, 0, 139, 1.0);
+/*	border: none;*/
+/*	box-shadow: 2px 2px 10px 0px rgba(255, 127, 80,0.75);*/
+        box-shadow:none;
+	margin:7px;
+	border-radius: 30px 7px 30px 7px;
+	background-color: rgba(242, 242, 242, 0.9);
+	color: black;
+	padding: 0px;
+}
+
+headerbar box {
+	background-color: rgba(0, 0, 139, 0.9);
+	border-radius : 25px 10px 25px 10px;
+	margin: 10px;
+	padding: 0px;
+}
+
+/*
+textview {
+        color: black;
+        border-radius: 20px;
+        padding: 7px;
+        border:none;
+}*/
+
+/*widget {
+	border-radius: 20px;
+	border-bottom-left-radius: 25px;
+}*/
+
+/*-------------------Windows-------------------*/
+
+window {
+	border: none;
+/*	background-color: rgba(0, 0, 0, 0.7);*/
+/*	padding: 0;*/
+	background: transparent;        
+	border-radius : 30px 10px 30px 10px;
+/*	opacity: 0.7;*/
+	color: white;
+/*	border-bottom-left-radius: 50px;*/
+/*	border-collapse: separate; */
+/*	background-color: transparentize(black, 0);*/
+/*	background-color: opacify(black,0.5);*/
+}
+
+/*-------------------Grids-------------------*/
+
+grid#MainGrid, grid#InitGrid, grid#IconViewGrid{
+        border: 2px solid #fff;
+	box-shadow: 2px 2px 10px 0px rgba(0, 0, 139,0.75);
+/*	box-shadow: none;*/
+/*	background-color: rgba(0, 0, 205, 0.7);*/
+	background: rgba (0, 17, 53, 0.9);
+/*	background: transparent;*/
+        border-radius : 30px 10px 30px 10px;
+	color: white;
+	padding: 10px;
+/*        border:1px solid #FFF;*/
+/*	border: none;*/
+/*	color: white;*/
+/*	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 25px;*/
+}
+
+/*-------------------Scrolled windows-------------------*/
+
+scrolledwindow * {
+/*	border: 2px solid #fff; */
+	border: none;
+	border-radius: 30px 10px 30px 10px;
+}
+
+scrolledwindow scrollbar * {
+	background-color: rgba(0, 17, 53, 0.5);
+	color: white;
+}
+
+scrolledwindow scrollbar:hover {
+	background-color: white;	
+}
+
+scrolledwindow#InitScrolledWindow {
+	border:none;
+}
+
+scrolledwindow#TreeviewClientsScrolledWindow,
+scrolledwindow#IconViewScrolledWindow,
+scrolledwindow#FilterIconViewScrolledWindow {
+	border-radius: 30px 10px 30px 10px;
+}
+
+scrolledwindow#InitScrolledWindow viewport#ListBoxViewport *{
+	border: none;
+}
+
+scrolledwindow#ScrolledWindowDiscovered {
+	border: none;
+}
+
+scrolledwindow#ScrolledWindowClientRequests textview * {
+	color: black;
+}
+
+scrolledwindow#ScrolledWindowProxyReplies textview * {
+        color: black;
+}
+/*
+scrolledwindow#ScrolledWindowLog * {
+	padding: 0;
+}*/
+
+/*-------------------Frames-------------------*/
+
+frame#FrameTopo {
+	border: none;
+	color: black;
+	border-radius: 30px 10px 30px 10px;
+}
+
+frame#FrameDiscoveredPeripherals {
+	border: none;
+	color: white;
+}
+
+frame#FrameCommonLog, frame#FrameActiveConnections {
+	border-radius: 30px 10px 30px 10px;
+/*	background-color : rgba(0, 0, 0, 0.3);*/
+	border:none;
+	color: white;
+}
+
+frame#FrameWidgetName * {
+	background-color : red;
+}
+
+/*-------------------Box-------------------*/
+
+box#BoxProxy {
+	color: black;
+}
+
+box#BoxRequests label {
+	color: black;
+}
+
+box#BoxReplies {
+	color: black;
+}
+
+box#BoxRequests * {
+	color: black;
+	border-radius: 30px 10px 30px 10px
+}
+
+box#BoxTopo {
+        border: 2px solid rgba(242, 242, 242, 0.9);
+	box-shadow: 2px 2px 10px 0px rgba(242, 242, 242,0.75);
+	background-color: rgba(242, 242, 242, 0.8);
+	padding: 5px;
+	color: black;
+	border-radius: 30px 10px 30px 10px;
+}
+
+/*-------------------Labels-------------------*/
+label {
+	color:white;
+}
+
+label#MyLabel {
+	color: white;
+}
+
+label#LabelClient {
+	color: black;
+}
+
+label#AdviceLabel {
+	color: white;
+}
+
+/*-------------------Buttons-------------------*/
+
+button * {
+	color: white;
+}
+
+button:hover {
+	background-color: #3085a9;
+}
+
+button:active {
+	background-color: #0274d9;
+}
+
+
+
+/*-------------------TextViews-------------------*/
+
+textview {
+        font-family: "Sans Serif";
+	font-size: 12px;
+	border-radius: 30px 10px 30px 10px;
+}
+
+textview#TextViewProxyReplies {
+/*	background-color: rgba(0, 0, 0, 0.8);*/
+	background-color: transparent;
+	color: black;
+}
+
+textview#TextViewClientRequests {
+	color: black;
+	background-color: transparent;
+}
+
+textview#TextViewCommonLog * {
+	border-radius: 30px 10px 30px 10px;
+/*	box-shadow: 2px 2px 10px 0px rgba(242, 242, 242,0.75);*/
+	border: 2px solid rgba(242, 242, 242, 0.9); 
+}
+
+textview#TextViewActiveConnections * {
+	border-radius: 30px 10px 30px 10px;	
+	border: 2px solid rgba(242, 242, 242, 0.9); 
+}
+
+textview#TextViewDiscoveredPeripherals * {
+	border-radius: 30px 10px 30px 10px;	
+	border: 2px solid rgba(242, 242, 242, 0.9);
+}
+
+selection {
+	background: rgba(242, 242, 242, 0.5);
+	color: rgba(0, 17,53, 1.0);
+}
+
+/*
+listbox#DeviceListBox * {
+	background:transparent;
+	background-color:transparent;
+	color:black;
+}*/
+
+entry * {
+	background-color:white;
+	color:black;
+}
+
+treeview * {
+	color:white;
+}
+
+treeview:selected {
+	background-color:#3085a9;
+	border-radius: 5px 5px 5px 5px;
+}
+
+iconview * {
+	color:white;
+}
+
+iconview:selected {
+       background-color:#3085a9;
+       border-radius: 5px 5px 5px 5px;
+}
+/*
+textbuffer * {
+	padding: 20px;
+}*/
+/*
+test *{
+	border-color: shade (mix (rgb (34, 255, 120), #fff, 0.5), 0.9);
+    }
+*/

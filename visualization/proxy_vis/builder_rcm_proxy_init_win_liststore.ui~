@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkListStore" id="liststore1">
+    <columns>
+      <!-- column-name Select -->
+      <column type="gboolean"/>
+      <!-- column-name Name -->
+      <column type="gchararray"/>
+      <!-- column-name Address -->
+      <column type="gchararray"/>
+      <!-- column-name Type_int -->
+      <column type="gchararray"/>
+      <!-- column-name Type -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">False</col>
+        <col id="1" translatable="yes">adsa</col>
+        <col id="2" translatable="yes">ghjg</col>
+        <col id="3" translatable="yes">asdas</col>
+        <col id="4" translatable="yes">BDADDR_LE_PUBLIC</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow" id="proxy_init_window">
+    <property name="name">ProxyInitWindow</property>
+    <property name="can_focus">False</property>
+    <property name="has_focus">True</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="default_width">640</property>
+    <property name="default_height">480</property>
+    <signal name="show" handler="gtk_widget_show" swapped="no"/>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Initializing proxy</property>
+        <property name="has_subtitle">False</property>
+        <property name="show_close_button">True</property>
+        <signal name="show" handler="gtk_widget_show" swapped="no"/>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkGrid" id="init_grid">
+        <property name="name">InitGrid</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="has_focus">True</property>
+        <property name="is_focus">True</property>
+        <property name="row_spacing">5</property>
+        <property name="row_homogeneous">True</property>
+        <property name="column_homogeneous">True</property>
+        <signal name="show" handler="gtk_widget_show" swapped="no"/>
+        <child>
+          <object class="GtkButton" id="filter_button">
+            <property name="label" translatable="yes">Filter</property>
+            <property name="name">FilterButton</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="show" handler="gtk_widget_show" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">8</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="init_scrolled_win">
+            <property name="name">InitScrolledWindow</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkTreeView" id="treeview_init_filter">
+                <property name="name">InitFilterTreeView</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="model">liststore1</property>
+                <property name="activate_on_single_click">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection">
+                    <property name="mode">multiple</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="init_filter_enabled">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">Select</property>
+                    <property name="clickable">True</property>
+                    <child>
+                      <object class="GtkCellRendererToggle" id="init_filter_check_renderer">
+                        <signal name="toggled" handler="on_toggle" object="liststore1" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="active">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="name_column">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">Name</property>
+                    <property name="clickable">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="init_filter_cell_renderer1"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="address_column">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">Address</property>
+                    <property name="clickable">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="init_filter_cell_renderer2"/>
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="type_column">
+                    <property name="visible">False</property>
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">Type</property>
+                    <property name="clickable">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="init_filter_cell_renderer3"/>
+                      <attributes>
+                        <attribute name="text">3</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="type_str_column">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">Type</property>
+                    <property name="clickable">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="init_filter_cell_renderer_4"/>
+                      <attributes>
+                        <attribute name="text">4</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">7</property>
+            <property name="height">8</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

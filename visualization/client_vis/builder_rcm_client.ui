@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment2">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkEntryBuffer" id="entrybuffer1"/>
+  <object class="GtkEntryCompletion" id="entrycompletion1"/>
+  <object class="GtkEntryCompletion" id="entrycompletion2"/>
+  <object class="GtkWindow" id="main_window">
+    <property name="name">MainWindow</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="border_width">10</property>
+    <property name="default_width">10</property>
+    <property name="default_height">10</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">RCM client configuration</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkGrid" id="main_grid">
+        <property name="name">MainGrid</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="row_spacing">7</property>
+        <property name="column_spacing">7</property>
+        <property name="column_homogeneous">True</property>
+        <child>
+          <object class="GtkFrame" id="frame_ip_addr">
+            <property name="name">FrameIpAddr</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label_xalign">0</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkEntry" id="entry_ip_addr">
+                <property name="name">EntryIpAddr</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="xalign">0.05000000074505806</property>
+                <property name="placeholder_text" translatable="yes">[0-255].[0-255].[0-255].[0-255]</property>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">10</property>
+                <property name="label" translatable="yes">Proxy IP address</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFrame" id="frame_port">
+            <property name="name">FramePort</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label_xalign">0</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkAlignment">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkEntry" id="entry_port">
+                    <property name="name">EntryPort</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="xalign">0.05000000074505806</property>
+                    <property name="placeholder_text" translatable="yes">port #</property>
+                    <property name="input_purpose">alpha</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">10</property>
+                <property name="label" translatable="yes">Port</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_connect">
+            <property name="label" translatable="yes">Connect!</property>
+            <property name="name">ButtonConnect</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="error_label">
+            <property name="name">ErrorLabel</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="wrap">True</property>
+            <property name="width_chars">30</property>
+            <property name="max_width_chars">50</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans 9"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+            <property name="width">2</property>
+            <property name="height">2</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="popup_window">
+    <property name="name">PopupWindow</property>
+    <property name="can_focus">False</property>
+    <property name="type">popup</property>
+    <property name="window_position">center-on-parent</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar_popup">
+        <property name="name">HeaderBarPopup</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Configuration error</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="row_homogeneous">True</property>
+        <property name="column_homogeneous">True</property>
+        <child>
+          <object class="GtkLabel" id="popup_label">
+            <property name="name">PopupLabel</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">3</property>
+            <property name="height">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="popup_ok_button">
+            <property name="label" translatable="yes">Got it!</property>
+            <property name="name">PopupOkButton</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

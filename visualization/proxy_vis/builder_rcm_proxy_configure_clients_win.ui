@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkListStore" id="liststore_iconview_dev">
+    <columns>
+      <!-- column-name Info -->
+      <column type="gchararray"/>
+      <!-- column-name Icon -->
+      <column type="GdkPixbuf"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="liststore_iconview_filter">
+    <columns>
+      <!-- column-name Info -->
+      <column type="gchararray"/>
+      <!-- column-name Icon -->
+      <column type="GdkPixbuf"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="liststore_treeview_clients">
+    <columns>
+      <!-- column-name MAC -->
+      <column type="gchararray"/>
+      <!-- column-name IP -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="client_filter_window">
+    <property name="name">ClientFilterWindow</property>
+    <property name="can_focus">False</property>
+    <property name="has_focus">True</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="default_width">640</property>
+    <property name="default_height">480</property>
+    <signal name="show" handler="gtk_widget_show" swapped="no"/>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Configuring clients</property>
+        <property name="has_subtitle">False</property>
+        <property name="show_close_button">True</property>
+        <signal name="show" handler="gtk_widget_show" swapped="no"/>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkGrid" id="iconview_grid">
+        <property name="name">IconViewGrid</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="row_spacing">3</property>
+        <property name="column_spacing">4</property>
+        <property name="row_homogeneous">True</property>
+        <property name="column_homogeneous">True</property>
+        <child>
+          <object class="GtkButton" id="validate_button">
+            <property name="label" translatable="yes">Validate</property>
+            <property name="name">ValidateButton</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">7</property>
+            <property name="top_attach">9</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="iconview_devices_scrolled_window">
+            <property name="name">IconViewScrolledWindow</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkIconView" id="icon_view_devices">
+                <property name="name">IconViewDevices</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin">6</property>
+                <property name="model">liststore_iconview_dev</property>
+                <child>
+                  <object class="GtkCellRendererText" id="dev_info"/>
+                  <attributes>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+                <child>
+                  <object class="GtkCellRendererPixbuf" id="dev_icon"/>
+                  <attributes>
+                    <attribute name="pixbuf">1</attribute>
+                  </attributes>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">3</property>
+            <property name="width">5</property>
+            <property name="height">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="filter_iconview">
+            <property name="name">FilterIconViewScrolledWindow</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkIconView" id="icon_view_filter">
+                <property name="name">IconViewFilter</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin">6</property>
+                <property name="model">liststore_iconview_filter</property>
+                <child>
+                  <object class="GtkCellRendererText" id="allowed_dev_info"/>
+                  <attributes>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+                <child>
+                  <object class="GtkCellRendererPixbuf" id="allowed_dev_icon"/>
+                  <attributes>
+                    <attribute name="pixbuf">1</attribute>
+                  </attributes>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">5</property>
+            <property name="top_attach">3</property>
+            <property name="width">5</property>
+            <property name="height">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="treeview_clients_scrolled_window">
+            <property name="name">TreeviewClientsScrolledWindow</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkTreeView" id="clients_treeview">
+                <property name="name">ClientsTreeView</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_left">15</property>
+                <property name="margin_right">10</property>
+                <property name="model">liststore_treeview_clients</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="client_mac">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">MAC</property>
+                    <property name="expand">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="mac"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="client_ip">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">IP</property>
+                    <property name="expand">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ip"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">7</property>
+            <property name="height">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="advice_label">
+            <property name="name">AdviceLabel</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">To validate a new configuration click on Validate button</property>
+            <property name="justify">center</property>
+            <property name="wrap">True</property>
+            <attributes>
+              <attribute name="font-desc" value="Nokia Pure Text 12"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">7</property>
+            <property name="top_attach">0</property>
+            <property name="width">3</property>
+            <property name="height">3</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
