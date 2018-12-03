@@ -106,19 +106,20 @@ To compile the visualizers, just go to a corresponding folder et run make it wil
 	run_bluez_rcm.sh
 
 2) Check with hciconfig that your bluetooth interface is up:
-$ hciconfig
+
+	hciconfig
 
 If it is marked as down, for example, like this:
 
 hci0:	Type: Primary  Bus: Virtual
 	BD Address: 00:AA:01:00:00:23  ACL MTU: 192:1  SCO MTU: 0:0
-	DOWN 
+	DOWN
 	RX bytes:0 acl:0 sco:0 events:13 errors:0
 	TX bytes:72 acl:0 sco:0 commands:13 errors:0
 
 You may use the following command to activate the corresponding hci (hci0 in my case):
 
-$ sudo hciconfig hci0 up
+	sudo hciconfig hci0 up
 
 Note that you do not need a physical bluetooth interface on client side because the communication will pass through the proxy.
 So, you can use the emulator provided by bluez and located in the emulator folder. See "How to create a virtual hci" section below.
