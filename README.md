@@ -139,13 +139,9 @@ This is our emulator. We could use it to create a virtual hci with BLE support :
 
 Now, if you execute `hciconfig`, you will see your virtual interface created, for example something like this should appear. Look at the Bus parameter, it's value is *Virtual*, so we are sure that this is our emulated device:
 
-`hci1:    Type: Primary  Bus: Virtual
-    BD Address: 00:AA:01:00:00:23  ACL MTU: 192:1  SCO MTU: 0:0
-    DOWN
-    RX bytes:0 acl:0 sco:0 events:13 errors:0
-    TX bytes:72 acl:0 sco:0 commands:13 errors:0`
+![hciconfig output](https://raw.githubusercontent.com/nokia/rcm-bluez/master/screenshots/hciconfig.png)
 
-You can put it up or down as a normal hci interface. You will also have a folder corresponding to this adapter appeared in /var/lib/bluetooth. As usual, the cache and discovered devices will be stored there. Do not forget to clean it.
+You can put it up or down as a normal hci interface. You will also have a folder corresponding to this adapter appeared in `/var/lib/bluetooth`. As usual, the cache and discovered devices will be stored there.
 
 # What next?
 
