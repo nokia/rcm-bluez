@@ -1,9 +1,9 @@
-#Remote Connection Manager (RCM)
+# Remote Connection Manager (RCM)
 
 Remote Connection Manager (RCM) - is a research prototype of the 
 ["Application-agnostic remote access for Bluetooth Low Energy"](https://ieeexplore.ieee.org/document/8406942/).
 
-#####RCM is:
+##### RCM is:
 - An abstract layer on top of BLE Protocol Stack
 - Provides a transparent connectivity to remote BLE devices
 	Connectivity is said transparent when the native applications can access both local
@@ -36,7 +36,7 @@ It doesn't do anything else.
 The proxy side is a bit more complex and represents the topology, logs and a way to configure your proxy.
 Cf. more details in the corresponding section below.
 
-#Content
+# Content
 
 The repository contains client, proxy, visualizer, app and screenshots folders.
 1. The first two of them are the rcm-client and rcm-proxy respectively with the bluez-5.43 sources.
@@ -66,9 +66,9 @@ You may also use `hcitool` or `gatttool` to communicate to your device from the 
 
 4. The screenshots of "how it should be" as weel as the explanation of different fields in proxy visualizer are provided in the Screenshots folder.
 
-#Needed packages
+# Needed packages
 
-The provided code includes the sources of bluez-5.43, so you do not need to download them separately. 
+The provided code includes the sources of *bluez-5.43*, so you do not need to download them separately. 
 The provided sources contain some of our callbacks needed by RCM, so please use our modified version of bluez.
 
 You can check how to install bluez from sources [here](https://www.jaredwolff.com/get-started-with-bluetooth-low-energy/#hide1)
@@ -97,47 +97,47 @@ So, just look carefully on the line where the configure script has crashed, inst
 
 To compile the visualizers, just go to a corresponding folder et run make it will create an executable.
 
-#How to run?
+# How to run?
 
 1. Install the client and proxy parts on the corresponding Linux machines.
 	
-	`./compile_rcm.sh`
-	`./run_bluez_rcm.sh`
+`./compile_rcm.sh`
+`./run_bluez_rcm.sh`
 
 2. Check with hciconfig that your bluetooth interface is up:
 
-	`hciconfig`
+`hciconfig`
 
 If it is marked as down, for example, like this:
 
-hci0:	Type: Primary  Bus: Virtual
-	BD Address: 00:AA:01:00:00:23  ACL MTU: 192:1  SCO MTU: 0:0
-	DOWN
-	RX bytes:0 acl:0 sco:0 events:13 errors:0
-	TX bytes:72 acl:0 sco:0 commands:13 errors:0
+>hci0:	Type: Primary  Bus: Virtual
+>	BD Address: 00:AA:01:00:00:23  ACL MTU: 192:1  SCO MTU: 0:0
+>	DOWN
+>	RX bytes:0 acl:0 sco:0 events:13 errors:0
+>	TX bytes:72 acl:0 sco:0 commands:13 errors:0
 
 You may use the following command to activate the corresponding hci (hci0 in my case):
 
-	`sudo hciconfig hci0 up`
+`sudo hciconfig hci0 up`
 
 Note that you do not need a physical bluetooth interface on client side because the communication will pass through the proxy.
 So, you can use the emulator provided by bluez and located in the emulator folder. See *"How to create a virtual hci"* section below.
 
 3. Run the bluetooth daemon with the coresponding rcm plugin. Check the run_bluez_rcm.sh script to know how to run it with gdb.
 
-#How to create a virtual hci?
+# How to create a virtual hci?
 
 1. First, you need insert the special kernel module by running the following command:
 
-    `sudo modprobe hci_vhci`
+`sudo modprobe hci_vhci`
 
 2. Then, open your script_compile inside the client/bluez-5.43 and add the key --enable-experimental right after the ./configure word, keep everything that follows.
 
-    `./configure --enable-experimental ...`
+`./configure --enable-experimental ...`
 
 For example, your line will become like this:
 
-    `./configure --enable-experimental --enable-library --enable-debug CFLAGS="-std=c99" LIBS="-lgio-2.0 -lgobject-2.0"`
+`./configure --enable-experimental --enable-library --enable-debug CFLAGS="-std=c99" LIBS="-lgio-2.0 -lgobject-2.0"`
 
 3. Compile everything as for the first time (decomment the first lines inside the compile_rcm.sh)
 
@@ -145,7 +145,7 @@ For example, your line will become like this:
 
 This is our emulator. We could use it to create a virtual hci with BLE support :
 
-    `sudo ./btvirt -l 1 -L`
+`sudo ./btvirt -l 1 -L`
 
 Now, if you execute `hciconfig`, you will see your virtual interface created, for example something like this should appear. Look at the Bus parameter, it's value is *Virtual*, so we are sure that this is our emulated device:
 
@@ -157,7 +157,7 @@ Now, if you execute `hciconfig`, you will see your virtual interface created, fo
 
 You can put it up or down as a normal hci interface. You will also have a folder corresponding to this adapter appeared in /var/lib/bluetooth. As usual, the cache and discovered devices will be stored there. Do not forget to clean it.
 
-#What next?
+# What next?
 
 1. Once you are inside the proxy, it is not listening yet. First, it should be initialized.
 Initialize proxy means configuring the list of devices it can see (e.g. to limit the noise and do not discover the devices of your neighbours).
@@ -176,4 +176,3 @@ Click on the Configure Client button, select the client from the list (click twi
 Then drag and drop the devices from the proxy init filter (left part) to the client filter (right part) and click on Validate button.
 5. Now you can run an application on the client side and try to discover, connect and write a characteristic value.
 For the moment, only write is possible.
-
