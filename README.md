@@ -29,13 +29,6 @@ It supposed to be connected to an IP network reachable from the client and locat
 In the current version of RCM, client and proxy are implemented separately, but it may change lately.
 Please note that this implementation is still in its initial state and is currently in progress.
 
-It also contains two graphic interfaces: one for client and one for proxy.
-They are located in the corresponding visualizer folders.
-The client vis is basically a window to enter the proxy's IP and port number and launch connection.
-It doesn't do anything else.
-The proxy side is a bit more complex and represents the topology, logs and a way to configure your proxy.
-Cf. more details in the corresponding section below.
-
 # Content
 
 The repository contains client, proxy, visualizer, app and screenshots folders.
@@ -82,7 +75,7 @@ libudev-dev
 libical-dev
 systemd libreadline-dev`
 
-May be also automake, gcc, libtool, gdb etc. if not already installed
+May be also `automake gcc libtool gdb` etc. if not already installed
 
 For the visualizers:
 
@@ -102,6 +95,7 @@ To compile the visualizers, just go to a corresponding folder et run make it wil
 1. Install the client and proxy parts on the corresponding Linux machines.
 	
 `./compile_rcm.sh`
+
 `./run_bluez_rcm.sh`
 
 2. Check with hciconfig that your bluetooth interface is up:
@@ -111,9 +105,13 @@ To compile the visualizers, just go to a corresponding folder et run make it wil
 If it is marked as down, for example, like this:
 
 >hci0:	Type: Primary  Bus: Virtual
+>
 >	BD Address: 00:AA:01:00:00:23  ACL MTU: 192:1  SCO MTU: 0:0
+>
 >	DOWN
+>
 >	RX bytes:0 acl:0 sco:0 events:13 errors:0
+>
 >	TX bytes:72 acl:0 sco:0 commands:13 errors:0
 
 You may use the following command to activate the corresponding hci (hci0 in my case):
