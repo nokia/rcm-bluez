@@ -104,15 +104,7 @@ To compile the visualizers, just go to a corresponding folder et run make it wil
 
 If it is marked as down, for example, like this:
 
->hci0:	Type: Primary  Bus: Virtual
->
->	BD Address: 00:AA:01:00:00:23  ACL MTU: 192:1  SCO MTU: 0:0
->
->	DOWN
->
->	RX bytes:0 acl:0 sco:0 events:13 errors:0
->
->	TX bytes:72 acl:0 sco:0 commands:13 errors:0
+![hciconfig output](/screenshots/hciconfig.png)
 
 You may use the following command to activate the corresponding hci (hci0 in my case):
 
