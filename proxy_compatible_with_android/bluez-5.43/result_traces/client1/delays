@@ -1,0 +1,2 @@
+sudo tc qdisc del dev enp0s3 root netem
+sudo tc qdisc add dev enp0s3 root netem delay 10ms

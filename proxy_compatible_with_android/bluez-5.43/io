@@ -1,0 +1,145 @@
+./plugins/my-plugin2.c:379:	write(adapter->mgmt->io->fd, test->cmd_data, test->cmd_size);
+./src/shared/mgmt.c:157:	mgmt->writer_active = false;
+./src/shared/mgmt.c:168:	ret = io_send(mgmt->io, &iov, 1);
+./src/shared/mgmt.c:170:		util_debug(mgmt->debug_callback, mgmt->debug_data,
+./src/shared/mgmt.c:179:	util_debug(mgmt->debug_callback, mgmt->debug_data,
+./src/shared/mgmt.c:183:	util_hexdump('<', request->buf, ret, mgmt->debug_callback,
+./src/shared/mgmt.c:184:							mgmt->debug_data);
+./src/shared/mgmt.c:186:	queue_push_tail(mgmt->pending_list, request);
+./src/shared/mgmt.c:197:	request = queue_pop_head(mgmt->reply_queue);
+./src/shared/mgmt.c:200:		if (!queue_isempty(mgmt->pending_list))
+./src/shared/mgmt.c:203:		request = queue_pop_head(mgmt->request_queue);
+./src/shared/mgmt.c:210:		can_write = !queue_isempty(mgmt->reply_queue);
+./src/shared/mgmt.c:221:	if (!queue_isempty(mgmt->pending_list)) {
+./src/shared/mgmt.c:223:		if (queue_isempty(mgmt->reply_queue))
+./src/shared/mgmt.c:227:	if (mgmt->writer_active)
+./src/shared/mgmt.c:230:	mgmt->writer_active = true;
+./src/shared/mgmt.c:232:	io_set_write_handler(mgmt->io, can_write_data, mgmt,
+./src/shared/mgmt.c:257:	request = queue_remove_if(mgmt->pending_list,
+./src/shared/mgmt.c:302:	mgmt->in_notify = true;
+./src/shared/mgmt.c:304:	queue_foreach(mgmt->notify_list, notify_handler, &match);
+./src/shared/mgmt.c:306:	mgmt->in_notify = false;
+./src/shared/mgmt.c:308:	if (mgmt->need_notify_cleanup) {
+./src/shared/mgmt.c:309:		queue_remove_all(mgmt->notify_list, match_notify_removed,
+./src/shared/mgmt.c:311:		mgmt->need_notify_cleanup = false;
+./src/shared/mgmt.c:324:	bytes_read = read(mgmt->fd, mgmt->buf, mgmt->len);
+./src/shared/mgmt.c:328:	util_hexdump('>', mgmt->buf, bytes_read,
+./src/shared/mgmt.c:329:				mgmt->debug_callback, mgmt->debug_data);
+./src/shared/mgmt.c:334:	hdr = mgmt->buf;
+./src/shared/mgmt.c:346:		cc = mgmt->buf + MGMT_HDR_SIZE;
+./src/shared/mgmt.c:349:		util_debug(mgmt->debug_callback, mgmt->debug_data,
+./src/shared/mgmt.c:354:						mgmt->buf + MGMT_HDR_SIZE + 3);
+./src/shared/mgmt.c:357:		cs = mgmt->buf + MGMT_HDR_SIZE;
+./src/shared/mgmt.c:360:		util_debug(mgmt->debug_callback, mgmt->debug_data,
+./src/shared/mgmt.c:367:		util_debug(mgmt->debug_callback, mgmt->debug_data,
+./src/shared/mgmt.c:371:						mgmt->buf + MGMT_HDR_SIZE);
+./src/shared/mgmt.c:388:	mgmt->fd = fd;
+./src/shared/mgmt.c:389:	mgmt->close_on_unref = false;
+./src/shared/mgmt.c:391:	mgmt->len = 512;
+./src/shared/mgmt.c:392:	mgmt->buf = malloc(mgmt->len);
+./src/shared/mgmt.c:393:	if (!mgmt->buf) {
+./src/shared/mgmt.c:398:	mgmt->io = io_new(fd);
+./src/shared/mgmt.c:399:	if (!mgmt->io) {
+./src/shared/mgmt.c:400:		free(mgmt->buf);
+./src/shared/mgmt.c:405:	mgmt->request_queue = queue_new();
+./src/shared/mgmt.c:406:	mgmt->reply_queue = queue_new();
+./src/shared/mgmt.c:407:	mgmt->pending_list = queue_new();
+./src/shared/mgmt.c:408:	mgmt->notify_list = queue_new();
+./src/shared/mgmt.c:410:	if (!io_set_read_handler(mgmt->io, can_read_data, mgmt, NULL)) {
+./src/shared/mgmt.c:411:		queue_destroy(mgmt->notify_list, NULL);
+./src/shared/mgmt.c:412:		queue_destroy(mgmt->pending_list, NULL);
+./src/shared/mgmt.c:413:		queue_destroy(mgmt->reply_queue, NULL);
+./src/shared/mgmt.c:414:		queue_destroy(mgmt->request_queue, NULL);
+./src/shared/mgmt.c:415:		io_destroy(mgmt->io);
+./src/shared/mgmt.c:416:		free(mgmt->buf);
+./src/shared/mgmt.c:421:	mgmt->writer_active = false;
+./src/shared/mgmt.c:456:	mgmt->close_on_unref = true;
+./src/shared/mgmt.c:466:	__sync_fetch_and_add(&mgmt->ref_count, 1);
+./src/shared/mgmt.c:476:	if (__sync_sub_and_fetch(&mgmt->ref_count, 1))
+./src/shared/mgmt.c:482:	queue_destroy(mgmt->reply_queue, NULL);
+./src/shared/mgmt.c:483:	queue_destroy(mgmt->request_queue, NULL);
+./src/shared/mgmt.c:485:	io_set_write_handler(mgmt->io, NULL, NULL, NULL);
+./src/shared/mgmt.c:486:	io_set_read_handler(mgmt->io, NULL, NULL, NULL);
+./src/shared/mgmt.c:488:	io_destroy(mgmt->io);
+./src/shared/mgmt.c:489:	mgmt->io = NULL;
+./src/shared/mgmt.c:491:	if (mgmt->close_on_unref)
+./src/shared/mgmt.c:492:		close(mgmt->fd);
+./src/shared/mgmt.c:494:	if (mgmt->debug_destroy)
+./src/shared/mgmt.c:495:		mgmt->debug_destroy(mgmt->debug_data);
+./src/shared/mgmt.c:497:	free(mgmt->buf);
+./src/shared/mgmt.c:498:	mgmt->buf = NULL;
+./src/shared/mgmt.c:500:	if (!mgmt->in_notify) {
+./src/shared/mgmt.c:501:		queue_destroy(mgmt->notify_list, NULL);
+./src/shared/mgmt.c:502:		queue_destroy(mgmt->pending_list, NULL);
+./src/shared/mgmt.c:514:	if (mgmt->debug_destroy)
+./src/shared/mgmt.c:515:		mgmt->debug_destroy(mgmt->debug_data);
+./src/shared/mgmt.c:517:	mgmt->debug_callback = callback;
+./src/shared/mgmt.c:518:	mgmt->debug_destroy = destroy;
+./src/shared/mgmt.c:519:	mgmt->debug_data = user_data;
+./src/shared/mgmt.c:529:	mgmt->close_on_unref = do_close;
+./src/shared/mgmt.c:589:	if (mgmt->next_request_id < 1)
+./src/shared/mgmt.c:590:		mgmt->next_request_id = 1;
+./src/shared/mgmt.c:592:	request->id = mgmt->next_request_id++;
+./src/shared/mgmt.c:594:	if (!queue_push_tail(mgmt->request_queue, request)) {
+./src/shared/mgmt.c:620:	if (mgmt->next_request_id < 1)
+./src/shared/mgmt.c:621:		mgmt->next_request_id = 1;
+./src/shared/mgmt.c:623:	request->id = mgmt->next_request_id++;
+./src/shared/mgmt.c:646:	if (mgmt->next_request_id < 1)
+./src/shared/mgmt.c:647:		mgmt->next_request_id = 1;
+./src/shared/mgmt.c:649:	request->id = mgmt->next_request_id++;
+./src/shared/mgmt.c:651:	if (!queue_push_tail(mgmt->reply_queue, request)) {
+./src/shared/mgmt.c:669:	request = queue_remove_if(mgmt->request_queue, match_request_id,
+./src/shared/mgmt.c:674:	request = queue_remove_if(mgmt->reply_queue, match_request_id,
+./src/shared/mgmt.c:679:	request = queue_remove_if(mgmt->pending_list, match_request_id,
+./src/shared/mgmt.c:697:	queue_remove_all(mgmt->request_queue, match_request_index,
+./src/shared/mgmt.c:699:	queue_remove_all(mgmt->reply_queue, match_request_index,
+./src/shared/mgmt.c:701:	queue_remove_all(mgmt->pending_list, match_request_index,
+./src/shared/mgmt.c:712:	queue_remove_all(mgmt->pending_list, NULL, NULL, destroy_request);
+./src/shared/mgmt.c:713:	queue_remove_all(mgmt->reply_queue, NULL, NULL, destroy_request);
+./src/shared/mgmt.c:714:	queue_remove_all(mgmt->request_queue, NULL, NULL, destroy_request);
+./src/shared/mgmt.c:736:	if (mgmt->next_notify_id < 1)
+./src/shared/mgmt.c:737:		mgmt->next_notify_id = 1;
+./src/shared/mgmt.c:739:	notify->id = mgmt->next_notify_id++;
+./src/shared/mgmt.c:741:	if (!queue_push_tail(mgmt->notify_list, notify)) {
+./src/shared/mgmt.c:756:	notify = queue_remove_if(mgmt->notify_list, match_notify_id,
+./src/shared/mgmt.c:761:	if (!mgmt->in_notify) {
+./src/shared/mgmt.c:767:	mgmt->need_notify_cleanup = true;
+./src/shared/mgmt.c:777:	if (mgmt->in_notify) {
+./src/shared/mgmt.c:778:		queue_foreach(mgmt->notify_list, mark_notify_removed,
+./src/shared/mgmt.c:780:		mgmt->need_notify_cleanup = true;
+./src/shared/mgmt.c:782:		queue_remove_all(mgmt->notify_list, match_notify_index,
+./src/shared/mgmt.c:793:	if (mgmt->in_notify) {
+./src/shared/mgmt.c:794:		queue_foreach(mgmt->notify_list, mark_notify_removed,
+./src/shared/mgmt.c:796:		mgmt->need_notify_cleanup = true;
+./src/shared/mgmt.c:798:		queue_remove_all(mgmt->notify_list, NULL, NULL, destroy_notify);
+./src/advertising.c:454:	 * See doc/mgmt-api.txt
+./Makefile:126:#	tools/mgmt-tester tools/gap-tester \
+./Makefile:420:#	tools/mgmt-tester$(EXEEXT) \
+./Makefile:1321:am__tools_mgmt_tester_SOURCES_DIST = tools/mgmt-tester.c monitor/bt.h \
+./Makefile:1326:#	tools/mgmt-tester.$(OBJEXT) \
+./Makefile:2209:	doc/test-runner.txt doc/settings-storage.txt doc/mgmt-api.txt \
+./Makefile:2485:#tools_mgmt_tester_SOURCES = tools/mgmt-tester.c monitor/bt.h \
+./Makefile:4763:tools/mgmt-tester.$(OBJEXT): tools/$(am__dirstamp) \
+./Makefile:4766:tools/mgmt-tester$(EXEEXT): $(tools_mgmt_tester_OBJECTS) $(tools_mgmt_tester_DEPENDENCIES) $(EXTRA_tools_mgmt_tester_DEPENDENCIES) tools/$(am__dirstamp)
+./Makefile:4767:	@rm -f tools/mgmt-tester$(EXEEXT)
+./Makefile:5499:include tools/$(DEPDIR)/mgmt-tester.Po
+./Makefile.tools:50:					tools/mgmt-tester tools/gap-tester \
+./Makefile.tools:86:tools_mgmt_tester_SOURCES = tools/mgmt-tester.c monitor/bt.h \
+./tools/test-runner.c:528:	"mgmt-tester",
+./tools/test-runner.c:535:	"tools/mgmt-tester",
+./tools/mgmt-tester.c:263:		mgmt_set_debug(data->mgmt_alt, mgmt_debug, "mgmt-alt: ", NULL);
+./android/bluetoothd-wrapper.c:42:	prg_argv[5] = mgmt_dbg ? "--mgmt-debug" : NULL;
+./android/bluetoothd-wrapper.c:59:	prg_argv[2] = mgmt_dbg ? "--mgmt-debug" : NULL;
+./android/main.c:631:	{ "mgmt-debug", 0, 0, G_OPTION_ARG_NONE, &option_mgmt_dbg,
+./Makefile.am:248:EXTRA_DIST += doc/mgmt-api.txt \
+./doc/test-coverage.txt:42:mgmt-tester		 331	Kernel management interface testing
+./Makefile.in:126:@EXPERIMENTAL_TRUE@	tools/mgmt-tester tools/gap-tester \
+./Makefile.in:420:@EXPERIMENTAL_TRUE@	tools/mgmt-tester$(EXEEXT) \
+./Makefile.in:1321:am__tools_mgmt_tester_SOURCES_DIST = tools/mgmt-tester.c monitor/bt.h \
+./Makefile.in:1326:@EXPERIMENTAL_TRUE@	tools/mgmt-tester.$(OBJEXT) \
+./Makefile.in:2209:	doc/test-runner.txt doc/settings-storage.txt doc/mgmt-api.txt \
+./Makefile.in:2485:@EXPERIMENTAL_TRUE@tools_mgmt_tester_SOURCES = tools/mgmt-tester.c monitor/bt.h \
+./Makefile.in:4763:tools/mgmt-tester.$(OBJEXT): tools/$(am__dirstamp) \
+./Makefile.in:4766:tools/mgmt-tester$(EXEEXT): $(tools_mgmt_tester_OBJECTS) $(tools_mgmt_tester_DEPENDENCIES) $(EXTRA_tools_mgmt_tester_DEPENDENCIES) tools/$(am__dirstamp)
+./Makefile.in:4767:	@rm -f tools/mgmt-tester$(EXEEXT)
+./Makefile.in:5499:@AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/mgmt-tester.Po@am__quote@

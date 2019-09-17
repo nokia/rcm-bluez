@@ -72,6 +72,16 @@ static void clear_logs(GtkWidget *widget,
 	GtkTextBuffer *text_buffer_discovered_peripherals = gtk_text_view_get_buffer(textview_discovered_peripherals);
 	gtk_text_buffer_set_text (text_buffer_discovered_peripherals, "", -1);
 }
+/*
+static void disconnect_ble_devices( GtkWidget *widget,
+									gpointer   data)
+{
+	PRINT_FUNCTION;
+
+//	GtkBuilder *builder = data;
+
+	send_dbus_request_with_reply("DisconnectAll", NULL);
+}*/
 
 static void textview_insert_and_scroll( GtkTextView *textview,
 										gchar *string)
@@ -175,7 +185,9 @@ static GSList *set_icon( GtkBuilder	*builder,
 						 gchar		*image_slot_name,
 						 gchar		*image_box_name,
 						 gchar		*label_name,
-						 gchar		*connection_info)
+						 gchar		*connection_info,
+						 double		 xscale,
+						 double		 yscale)
 {
 	PRINT_FUNCTION;
 
@@ -187,7 +199,7 @@ static GSList *set_icon( GtkBuilder	*builder,
 	height = gtk_widget_get_allocated_height ((GtkWidget *)box_image_client);
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(icon_file_name, NULL); //"./pic/client.png"
 	//	new_pix = gdk_pixbuf_scale_simple(pixbuf, 70, 70, GDK_INTERP_BILINEAR);
-	GdkPixbuf *new_pix = gdk_pixbuf_scale_simple(pixbuf, width/1.9, height/2, GDK_INTERP_BILINEAR);
+	GdkPixbuf *new_pix = gdk_pixbuf_scale_simple(pixbuf, width/xscale, height/yscale, GDK_INTERP_BILINEAR);
 	gtk_image_set_from_pixbuf(icon_client, new_pix);
 
 	GtkLabel *lb_client = (GtkLabel*)gtk_builder_get_object (builder, label_name);
@@ -408,7 +420,7 @@ void init_active_connections(GtkBuilder *builder)
 			if(!free_slot) return;
 
 			ConnectionSlotStatus *slot = free_slot->data;
-			active_connections = set_icon(builder, active_connections, "./pic/client.png", slot->image_slot_name, slot->slot_name, slot->label_name, g_strdup(ip));
+			active_connections = set_icon(builder, active_connections, "./pic/client.png", slot->image_slot_name, slot->slot_name, slot->label_name, g_strdup(ip), 3.9, 1.7);
 			slot->busy = TRUE;
 //
 			g_free(mac);
@@ -456,7 +468,7 @@ void new_connection_signal_callback( GDBusConnection	*conn,
 	if(!free_slot) return;
 
 	ConnectionSlotStatus *slot = free_slot->data;
-	active_connections = set_icon(builder, active_connections, "./pic/client.png", slot->image_slot_name, slot->slot_name, slot->label_name, addr);
+	active_connections = set_icon(builder, active_connections, "./pic/client.png", slot->image_slot_name, slot->slot_name, slot->label_name, addr, 3.9, 1.7);
 	slot->busy = TRUE;
 
 	g_free(new_connection_info);
@@ -581,7 +593,7 @@ void device_connected_signal_callback ( GDBusConnection	*conn,
 	if(!free_slot) return;
 
 	ConnectionSlotStatus *slot = free_slot->data;
-	active_dev_connections = set_icon(builder, active_dev_connections, "./pic/bulb.png", slot->image_slot_name, slot->slot_name, slot->label_name, dev_addr);
+	active_dev_connections = set_icon(builder, active_dev_connections, "./pic/bulb.png", slot->image_slot_name, slot->slot_name, slot->label_name, dev_addr, 2.5, 1.5);
 	slot->busy = TRUE;
 }
 
@@ -814,6 +826,12 @@ static void install_gtk_signal_handlers()
 	GObject *button_configure_clients;
 	button_configure_clients = gtk_builder_get_object(builders->builder, "button_configure_clients");
 	g_signal_connect (button_configure_clients, "clicked", G_CALLBACK(configure_clients), window);
+
+	/*
+	GObject *disconnect_button;
+	disconnect_button = gtk_builder_get_object(builders->builder, "button_disconnect");
+	g_signal_connect (disconnect_button, "clicked", G_CALLBACK (disconnect_ble_devices), builders->builder);
+	*/
 }
 
 static void main_window_init_slots()
