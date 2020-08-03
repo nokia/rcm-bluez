@@ -162,3 +162,8 @@ Click on the Configure Client button, select the client from the list (click twi
 Then drag and drop the devices from the proxy init filter (left part) to the client filter (right part) and click on Validate button.
 5. Now you can run an application on the client side and try to discover, connect and write a characteristic value.
 For the moment, only write is possible.
+
+
+## License
+
+This project is licensed under the GPL-2.0 license - see the [LICENSE](https://github.com/nokia/rcm-bluez/blob/master/LICENSE).
